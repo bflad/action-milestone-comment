@@ -18,7 +18,7 @@ inputs:
     description: 'Issue and pull request state. Only those in this state will receive a comment. Valid values are `all`, `closed`, or `open`.'
     required: false
     default: 'all'
-  repo-token:
+  token:
     description: 'GitHub token to perform actions.'
     required: false
     default: ${{ github.token }}

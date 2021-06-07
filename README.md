@@ -35,8 +35,8 @@ jobs:
 |-------|-------------|---------|
 | `body` | Content of comment for issues and pull requests. | |
 | `milestone` | Numeric identifier of milestone. | `${{ github.event.milestone.number }}` |
-| `repo-token` | GitHub token to perform actions. | `${{ github.token }}` |
 | `state` | Issue and pull request state. Only those in this state will receive a comment. Valid values are `all`, `closed`, or `open`. | `all` |
+| `token` | GitHub token to perform actions. | `${{ github.token }}` |
 
 ### Outputs
 

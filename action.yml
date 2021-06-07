@@ -1,13 +1,32 @@
-name: 'Wait'
-description: 'Wait a designated number of milliseconds'
+name: 'Milestone Comment'
+author: 'Brian Flad'
+description: 'Comment on Milestone Issues and Pull Requests'
+
+branding:
+  color: 'gray-dark'
+  icon: 'message-square'
+
 inputs:
-  milliseconds:  # id of input
-    description: 'number of milliseconds to wait'
+  body:
+    description: 'Content of comment for issues and pull requests.'
     required: true
-    default: '1000'
+  milestone:
+    description: 'Numeric identifier of milestone.'
+    required: false
+    default: ${{ github.event.milestone.number }}
+  state:
+    description: 'Issue and pull request state. Only those in this state will receive a comment. Valid values are `all`, `closed`, or `open`.'
+    required: false
+    default: 'all'
+  repo-token:
+    description: 'GitHub token to perform actions.'
+    required: false
+    default: ${{ github.token }}
+
 outputs:
-  time: # output will be available to future steps
-    description: 'The message to output'
+  ids:
+    description: 'Numeric identifiers of all issues and pull requests that received comments.'
+
 runs:
   using: 'node12'
   main: 'dist/index.js'

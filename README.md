@@ -55,13 +55,7 @@ npm install
 Run the tests :heavy_check_mark:
 
 ```bash
-$ npm run test
-
- PASS  ./index.test.js
-  ✓ throws invalid number (3ms)
-  ✓ wait 500 ms (504ms)
-  ✓ test runs (95ms)
-...
+npm run test
 ```
 
 ### Packaging for Distribution

@@ -28,7 +28,7 @@
   },
   "homepage": "https://github.com/bflad/action-milestone-comment#readme",
   "dependencies": {
-    "@actions/core": "^1.3.0",
+    "@actions/core": "^1.4.0",
     "@actions/github": "^5.0.0",
     "@octokit/plugin-retry": "^3.0.7",
     "@octokit/plugin-throttling": "^3.4.2"

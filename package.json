@@ -30,7 +30,7 @@
   "dependencies": {
     "@actions/core": "^1.3.0",
     "@actions/github": "^5.0.0",
-    "@octokit/plugin-retry": "^3.0.7",
+    "@octokit/plugin-retry": "^3.0.8",
     "@octokit/plugin-throttling": "^3.4.2"
   },
   "devDependencies": {

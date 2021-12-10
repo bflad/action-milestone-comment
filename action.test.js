@@ -35,15 +35,15 @@ describe('action test suite', () => {
 
     const scope = nock('https://api.github.com')
       .get(`/repos/testowner/testrepo/issues`)
-      .query({milestone: '1', state: 'all'})
+      .query({ milestone: '1', state: 'all' })
       .reply(200, mockIssues)
-      .post(`/repos/${repo}/issues/1/comments`, {body: body})
+      .post(`/repos/${repo}/issues/1/comments`, { body: body })
       .reply(200)
-      .post(`/repos/${repo}/issues/2/comments`, {body: body})
+      .post(`/repos/${repo}/issues/2/comments`, { body: body })
       .reply(200);
 
     const action = require('./action');
-    await expect(await action()).toEqual({ids: "1,2"});
+    await expect(await action()).toEqual({ ids: "1,2" });
     await expect(scope.isDone()).toBeTruthy();
   });
 
@@ -62,22 +62,22 @@ describe('action test suite', () => {
 
     const scope = nock('https://api.github.com')
       .get(`/repos/testowner/testrepo/issues`)
-      .query({milestone: '1', state: 'all'})
+      .query({ milestone: '1', state: 'all' })
       .reply(500, 'expected transient error')
       .get(`/repos/testowner/testrepo/issues`)
-      .query({milestone: '1', state: 'all'})
+      .query({ milestone: '1', state: 'all' })
       .reply(200, mockIssues)
-      .post(`/repos/${repo}/issues/1/comments`, {body: body})
+      .post(`/repos/${repo}/issues/1/comments`, { body: body })
       .reply(200)
-      .post(`/repos/${repo}/issues/2/comments`, {body: body})
+      .post(`/repos/${repo}/issues/2/comments`, { body: body })
       .reply(200);
 
     const action = require('./action');
-    await expect(await action()).toEqual({ids: "1,2"});
+    await expect(await action()).toEqual({ ids: "1,2" });
     await expect(scope.isDone()).toBeTruthy();
   });
 
-  test('Retries abuse limit errors', async () => {
+  test('Retries secondary rate limit errors', async () => {
     process.env['GITHUB_EVENT_PATH'] = path.join(__dirname, 'milestone-closed-payload.json');
     process.env['INPUT_BODY'] = body;
 
@@ -92,20 +92,20 @@ describe('action test suite', () => {
 
     const scope = nock('https://api.github.com')
       .get(`/repos/testowner/testrepo/issues`)
-      .query({milestone: '1', state: 'all'})
+      .query({ milestone: '1', state: 'all' })
       .reply(200, mockIssues)
-      .post(`/repos/${repo}/issues/1/comments`, {body: body})
+      .post(`/repos/${repo}/issues/1/comments`, { body: body })
       .reply(200)
-      .post(`/repos/${repo}/issues/2/comments`, {body: body})
+      .post(`/repos/${repo}/issues/2/comments`, { body: body })
       .reply(403, {
-        message: "You have triggered an abuse detection mechanism and have been temporarily blocked from content creation. Please retry your request again later.",
-        documentation_url: "https://docs.github.com/rest/overview/resources-in-the-rest-api#abuse-rate-limits"
+        message: "You have exceeded a secondary rate limit and have been temporarily blocked from content creation. Please retry your request again later.",
+        documentation_url: "https://docs.github.com/rest/overview/resources-in-the-rest-api#secondary-rate-limits"
       })
-      .post(`/repos/${repo}/issues/2/comments`, {body: body})
+      .post(`/repos/${repo}/issues/2/comments`, { body: body })
       .reply(200);
 
     const action = require('./action');
-    await expect(await action()).toEqual({ids: "1,2"});
+    await expect(await action()).toEqual({ ids: "1,2" });
     await expect(scope.isDone()).toBeTruthy();
   });
 
@@ -124,18 +124,18 @@ describe('action test suite', () => {
 
     const scope = nock('https://api.github.com')
       .get(`/repos/testowner/testrepo/issues`)
-      .query({milestone: '1', state: 'all'})
+      .query({ milestone: '1', state: 'all' })
       .reply(429, 'expected rate limit error')
       .get(`/repos/testowner/testrepo/issues`)
-      .query({milestone: '1', state: 'all'})
+      .query({ milestone: '1', state: 'all' })
       .reply(200, mockIssues)
-      .post(`/repos/${repo}/issues/1/comments`, {body: body})
+      .post(`/repos/${repo}/issues/1/comments`, { body: body })
       .reply(200)
-      .post(`/repos/${repo}/issues/2/comments`, {body: body})
+      .post(`/repos/${repo}/issues/2/comments`, { body: body })
       .reply(200);
 
     const action = require('./action');
-    await expect(await action()).toEqual({ids: "1,2"});
+    await expect(await action()).toEqual({ ids: "1,2" });
     await expect(scope.isDone()).toBeTruthy();
   });
 });

@@ -1,3 +1,9 @@
+# v1.0.1
+
+NOTES
+
+- Support retries on GitHub secondary rate limiting after rename.
+
 # v1.0.0
 
 FEATURES

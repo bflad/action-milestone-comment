@@ -7,7 +7,7 @@ const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 async function run() {
   try {
-    const body = core.getInput('body', {required: true});
+    const body = core.getInput('body', { required: true });
     const milestone = parseInt(core.getInput('milestone'));
     const state = core.getInput('state');
     const token = core.getInput('token');
@@ -20,7 +20,7 @@ async function run() {
     await Promise.all(milestoneIssues.map(async issue => {
       await issues.createComment(client, repo.owner, repo.repo, issue.number, body);
 
-      core.debug(`Waiting 2 seconds between requests: https://docs.github.com/en/rest/guides/best-practices-for-integrators#dealing-with-abuse-rate-limits`);
+      core.debug(`Waiting 2 seconds between requests: https://docs.github.com/en/rest/guides/best-practices-for-integrators#dealing-with-secondary-rate-limits`);
       await sleep(2000);
     }));
 

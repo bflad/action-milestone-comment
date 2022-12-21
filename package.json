@@ -7,10 +7,11 @@
     "testTimeout": 30000
   },
   "scripts": {
+    "build": "ncc build index.js -o dist --source-map --license licenses.txt",
+    "format-check": "echo \"unimplemented for actions/reusable-workflows basic-validation\"",
     "lint": "eslint .",
-    "prepare": "ncc build index.js -o dist --source-map --license licenses.txt",
     "test": "jest",
-    "all": "npm run lint && npm run prepare && npm run test"
+    "all": "npm run lint && npm run build && npm run test"
   },
   "repository": {
     "type": "git",

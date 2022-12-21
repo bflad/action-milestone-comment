@@ -62,8 +62,8 @@ npm run test
 
 Packaging assembles the code into one file (`dist/index.js`) that can be checked in to Git, enabling fast and reliable execution and preventing the need to check in `node_modules`.
 
-Run prepare
+Run build
 
 ```bash
-npm run prepare
+npm run build
 ```

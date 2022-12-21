@@ -1,3 +1,9 @@
+# v1.0.2
+
+NOTES
+
+- Update various dependencies to remove warning logs
+
 # v1.0.1
 
 NOTES

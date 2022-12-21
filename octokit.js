@@ -18,20 +18,20 @@ module.exports = function client(token) {
     };
 
     options.throttle = {
-        onAbuseLimit(retryAfter, options) {
-            core.info(`Secondary rate limit triggered for request ${options.method} ${options.url} (attempt ${options.request.retryCount}/${secondaryRateLimitRetries})`)
+        onSecondaryRateLimit(retryAfter, options, oktokit, retryCount) {
+            core.info(`Secondary rate limit triggered for request ${options.method} ${options.url} (attempt ${retryCount}/${secondaryRateLimitRetries})`)
 
-            if (options.request.retryCount < secondaryRateLimitRetries) {
+            if (retryCount < secondaryRateLimitRetries) {
                 core.info(`Retrying after ${retryAfter} seconds`)
                 return true
             }
 
             core.warning(`Exhausted secondary rate limit retry count (${secondaryRateLimitRetries}) for ${options.method} ${options.url}`)
         },
-        onRateLimit(retryAfter, options) {
-            core.info(`Rate limit triggered for request ${options.method} ${options.url} (attempt ${options.request.retryCount}/${rateLimitRetries})`)
+        onRateLimit(retryAfter, options, oktokit, retryCount) {
+            core.info(`Rate limit triggered for request ${options.method} ${options.url} (attempt ${retryCount}/${rateLimitRetries})`)
 
-            if (options.request.retryCount < rateLimitRetries) {
+            if (retryCount < rateLimitRetries) {
                 core.info(`Retrying after ${retryAfter} seconds`)
                 return true
             }

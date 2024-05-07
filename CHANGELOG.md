@@ -1,3 +1,11 @@
+# v1.0.3
+
+NOTES
+
+- Set action to use node20
+- Update dependencies
+- Use nock-beta to allow mocking of HTTP requests in modern node. https://github.com/nock/nock/issues/2397
+
 # v1.0.2
 
 NOTES

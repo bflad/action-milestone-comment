@@ -21,7 +21,7 @@ jobs:
   Comment:
     runs-on: ubuntu-latest
     steps:
-      - uses: bflad/action-milestone-comment@v1
+      - uses: bflad/action-milestone-comment@v2
         with:
           body: |
             This functionality has been released in ${{ github.event.milestone.title }}.

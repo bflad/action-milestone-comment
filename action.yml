@@ -28,5 +28,5 @@ outputs:
     description: 'Numeric identifiers of all issues and pull requests that received comments.'
 
 runs:
-  using: 'node12'
+  using: 'node20'
   main: 'dist/index.js'

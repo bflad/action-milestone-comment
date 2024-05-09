@@ -1,3 +1,10 @@
+# v2.0.0
+
+NOTES
+
+- Set action to use `node20`
+- Update dependencies
+
 # v1.0.2
 
 NOTES

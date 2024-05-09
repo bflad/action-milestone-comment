@@ -1,6 +1,6 @@
 {
   "name": "action-milestone-comment",
-  "version": "1.0.2",
+  "version": "2.0.0",
   "description": "GitHub Action to Comment on Milestone Issues and Pull Requests",
   "main": "index.js",
   "jest": {

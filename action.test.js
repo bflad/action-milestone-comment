@@ -109,7 +109,7 @@ describe('action test suite', () => {
     const action = require('./action');
     await expect(await action()).toEqual({ ids: "1,2" });
     await expect(scope.isDone()).toBeTruthy();
-  });
+  }, 80000); // Secondary rate limit retries are 60 seconds apart
 
   test('Retries rate limit errors', async () => {
     process.env['GITHUB_EVENT_PATH'] = path.join(__dirname, 'milestone-closed-payload.json');

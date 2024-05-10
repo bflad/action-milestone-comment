@@ -1,4 +1,6 @@
+const { beforeAll, beforeEach, describe, expect, test } = require('@jest/globals');
 const nock = require('nock');
+const process = require('node:process');
 const path = require('path');
 
 const body = 'testbody';

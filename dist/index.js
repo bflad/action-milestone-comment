@@ -9,7 +9,7 @@ const github = __nccwpck_require__(5438);
 const issues = __nccwpck_require__(8826);
 const milestones = __nccwpck_require__(4666);
 const octokit = __nccwpck_require__(1261);
-const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+const setTimeout = (__nccwpck_require__(9397).setTimeout);
 
 async function run() {
   try {
@@ -27,7 +27,7 @@ async function run() {
       await issues.createComment(client, repo.owner, repo.repo, issue.number, body);
 
       core.debug(`Waiting 2 seconds between requests: https://docs.github.com/en/rest/guides/best-practices-for-integrators#dealing-with-secondary-rate-limits`);
-      await sleep(2000);
+      await setTimeout(2000);
     }));
 
     const outputs = {
@@ -11496,6 +11496,14 @@ module.exports = require("net");
 
 /***/ }),
 
+/***/ 9397:
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("node:timers/promises");
+
+/***/ }),
+
 /***/ 2037:
 /***/ ((module) => {
 
@@ -11610,12 +11618,13 @@ var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
 const action = __nccwpck_require__(4582);
+const core = __nccwpck_require__(2186);
 
 async function run() {
   try {
     await action();
   } catch(err) {
-    return;
+    core.debug(err);
   }
 }
 

@@ -1,5 +1,7 @@
 const milestones = require('./milestones')
+const { beforeAll, describe, expect, test } = require('@jest/globals');
 const nock = require('nock')
+const console = require('node:console')
 const { Octokit } = require("@octokit/rest");
 
 const client = new Octokit({
@@ -56,11 +58,3 @@ describe('list issues', () => {
     await expect(milestones.listIssues(client, 'testowner', 'testrepo', 1, 'all')).rejects.toThrow('expected error');
   });
 });
-
-// test('wait 500 ms', async () => {
-//   const start = new Date();
-//   await wait(500);
-//   const end = new Date();
-//   var delta = Math.abs(end - start);
-//   expect(delta).toBeGreaterThanOrEqual(500);
-// });

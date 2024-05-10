@@ -8,6 +8,9 @@ module.exports = [
     {
         files: ["**/*.js"],
         languageOptions: {
+            globals: {
+                __dirname: "readonly",
+            },
             sourceType: "commonjs",
         },
         rules: {

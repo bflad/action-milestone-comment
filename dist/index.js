@@ -11618,12 +11618,13 @@ var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
 const action = __nccwpck_require__(4582);
+const core = __nccwpck_require__(2186);
 
 async function run() {
   try {
     await action();
   } catch(err) {
-    return;
+    core.debug(err);
   }
 }
 

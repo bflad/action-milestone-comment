@@ -35,7 +35,7 @@
     "@octokit/plugin-throttling": "^8.2.0"
   },
   "devDependencies": {
-    "@eslint/js": "^9.2.0",
+    "@eslint/js": "^9.3.0",
     "@octokit/rest": "^20.1.1",
     "@vercel/ncc": "^0.38.1",
     "eslint": "^9.2.0",
